@@ -1,5 +1,5 @@
 import  resolveToken  from "../utils/resolveToken.js";
-import { listRepositories, repoDetails } from "../services/githubService.js";
+import { listRepositories, repoDetails as fetchRepoDetails  } from "../services/githubService.js";
 import { scanRepo } from "../utils/scanRepo.js";
 
 
@@ -13,7 +13,7 @@ const resolvers = {
         },
         repoDetails: async (_, { owner, name, token: tokenArg }, ctx) => {
             const token = resolveToken(tokenArg, ctx.req, ctx.token);
-            return repoDetails(owner, name, token);
+            return fetchRepoDetails(owner, name, token);
         }
     }
 };
