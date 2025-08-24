@@ -31,7 +31,7 @@ export async function githubREST(endpoint, token) {
 //      Fetches a list of repositories for a given owner (user/org)
 //     Optionally paginates using `after` cursor
 //     Scans each repo using the provided `scanRepo` function (with concurrency limit)
-export async function listRepositories(owner, first = 3, after, token, scanRepo) {
+export async function listRepositories(owner, first = 4, after, token, scanRepo) {
     const query = `
     query ListRepos($owner: String!, $first: Int!, $after: String) {
       repositoryOwner(login: $owner) {
@@ -87,7 +87,6 @@ export async function repoDetails(owner, name, token) {
 
     const data = await githubGQL(gqlQuery, { owner, name }, token);
     const repo = data.repository;
-
 
     // fetch hooks via REST
     const hooks = await githubREST(`/repos/${owner}/${name}/hooks`, token);

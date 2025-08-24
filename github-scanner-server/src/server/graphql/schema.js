@@ -41,7 +41,7 @@ type RateLimit {
 }
 
 type Query {
-  listRepositories(owner: String!, first: Int = 3, token: String): RepositoryConnection!
+  listRepositories(owner: String!, first: Int = 4, token: String): RepositoryConnection!
   repoDetails(owner: String!, name: String!, token: String): Repository!
   rateLimit(token: String): RateLimit!
 }
